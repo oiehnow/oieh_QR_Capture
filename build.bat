@@ -6,12 +6,12 @@ echo [1/2] 의존성 설치...
 python -m pip install -r requirements.txt
 if errorlevel 1 goto error
 
-echo [2/2] EXE 빌드...
-python -m PyInstaller --noconfirm --onefile --windowed --name "oieh QR reader" --icon icon.png --add-data "icon_win.png;." --collect-binaries pyzbar --upx-exclude libzbar-64.dll --upx-exclude libiconv.dll --exclude-module numpy --exclude-module cv2 --exclude-module PIL --exclude-module customtkinter --exclude-module ssl --exclude-module _ssl --exclude-module _hashlib --exclude-module lzma --exclude-module bz2 --exclude-module _zstd --exclude-module decimal main.py
+echo [2/2] EXE 빌드... (spec 사용: onedir + UPX 미사용 + 버전정보)
+python -m PyInstaller --noconfirm "oieh QR reader.spec"
 if errorlevel 1 goto error
 
 echo.
-echo 완료! dist\oieh QR reader.exe 를 확인하세요.
+echo 완료! dist\oieh QR reader\oieh QR reader.exe 를 확인하세요.
 pause
 exit /b 0
 
